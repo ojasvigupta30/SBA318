@@ -14,8 +14,7 @@
 
     <!-- Options to return to the forest or try again -->
     <div class="actions">
-      <a href="/forest?player=#player#" class="btn">Return to the forest</a><br>
-      <a href="/forest?player=#player#" class="btn">Try your luck again</a>
+      <a href="/" class="btn">Try your luck again</a>
     </div>
   </div>
 </body>

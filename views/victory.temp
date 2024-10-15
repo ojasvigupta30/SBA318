@@ -12,7 +12,7 @@
     <h1>Victory!</h1>
     <p>Congratulations, brave adventurer! You have vanquished the dragon and emerged victorious.</p>
 
-    <a href="/forest?player=#player#">Return to the forest for more adventures</a><br>
+    <a href="/">Return for more adventures</a><br>
   </div>
 </body>
 </html>
