@@ -64,6 +64,10 @@ router.get('/forest/explore', (req, res, next) => {
         const playerName = req.query.player;
         console.log('Player name from query in /forest/explore:', playerName);  // Log player name
 
+        if (!playerName) {
+            throw new Error('No player name found in the query parameter');
+        }
+
         const player = players.find(p => p.name === playerName);
         if (!player) {
             throw new Error('Player not found in /forest/explore');
@@ -83,6 +87,35 @@ router.get('/forest/explore', (req, res, next) => {
         next(err);
     }
 });
+
+// Find an item and add it to the player's inventory
+router.get('/forest/find-item', (req, res, next) => {
+    try {
+        const playerName = req.query.player;
+        console.log('Player name from query in /forest/find-item:', playerName);  // Log the player name
+
+        const player = players.find(p => p.name === playerName);
+        if (!player) {
+            throw new Error('Player not found in /forest/find-item');
+        }
+
+        // Randomly assign an item from the inventory data
+        const foundItem = inventory[Math.floor(Math.random() * inventory.length)];
+        player.inventory.push(foundItem);  // Add the item to the player's inventory
+
+        console.log(`Item added to inventory:`, player.inventory);
+
+        res.render('inventory', {
+            title: 'Inventory Updated',
+            message: `You found a ${foundItem.name}. It is now in your inventory.`,
+            inventoryItems: player.inventory.map(item => `<li>${item.name}: ${item.description}</li>`).join('')
+        });
+    } catch (err) {
+        console.error('Error in /forest/find-item:', err.message);
+        next(err);
+    }
+});
+
 
 // Find a weapon and equip it to the player
 router.get('/forest/find-weapon', (req, res, next) => {
