@@ -17,6 +17,21 @@ app.use(bodyParser.json({ extended: true }));
 app.use(express.static(`public`));
 
 
+// Custom template engine
+app.engine('temp', (filePath, options, callback) => {
+    fs.readFile(filePath, (err, content) => {
+      if (err) return callback(err);
+  
+      let rendered = content.toString()
+        .replace('#title#', options.title)
+        .replace('#message#', options.message);
+  
+      return callback(null, rendered);
+    });
+  });
+  
+  app.set('views', './views'); // Set the views directory
+  app.set('view engine', 'temp'); // Register the custom template engine
 
 
 //Routes
