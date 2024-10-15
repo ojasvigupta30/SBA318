@@ -19,12 +19,16 @@ app.use(express.static(`public`));
 
 
 
-
-
 //Routes
 app.use('/', adventureRoutes);
 app.use('/dragon', challengeRoutes);
 
+
+// Error-handling middleware
+app.use((err, reqs, resp, next) => {
+    console.error(err.stack);
+    resp.status(500).send('Something went wrong! Please try again.');
+  });
 
 //Server Listner
 app.listen(PORT, (reqs, resp)=>{
