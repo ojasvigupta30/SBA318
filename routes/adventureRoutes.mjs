@@ -18,15 +18,15 @@ const findOrCreatePlayer = (name) => {
 };
 
 // Home route
-router.get('/', (req, res) => {
-    res.render('home', { title: 'Adventure Game', message: 'Enter your name to start your adventure!' });
+router.get('/', (reqs, resp) => {
+    resp.render('home', { title: 'Adventure Game', message: 'Enter your name to start your adventure!' });
 });
 
 // Start the adventure (post player name)
-router.post('/start', (req, res) => {
-    const playerName = req.body.name;
+router.post('/start', (reqs, resp) => {
+    const playerName = reqs.body.name;
     if (!playerName) {
-        return res.status(400).send('Player name is required');
+        return resp.status(400).send('Player name is required');
     }
     const player = findOrCreatePlayer(playerName);
     console.log(`Player created or found:`, player);
@@ -36,9 +36,9 @@ router.post('/start', (req, res) => {
 });
 
 // Forest route
-router.get('/forest', (req, res, next) => {
+router.get('/forest', (reqs, resp, next) => {
     try {
-        const playerName = req.query.player;
+        const playerName = reqs.query.player;
         console.log('Player name from query in /forest:', playerName);  // Log player name
 
         if (!playerName) {
@@ -51,7 +51,7 @@ router.get('/forest', (req, res, next) => {
         }
 
         const room = rooms[0];  // Mysterious Forest
-        res.render('forest', {
+        resp.render('forest', {
             title: 'Mysterious Forest',
             player: playerName,
             message: room.description
@@ -63,7 +63,7 @@ router.get('/forest', (req, res, next) => {
 });
 
 // Explore deeper into the forest
-router.get('/forest/explore', (req, res, next) => {
+router.get('/forest/explore', (reqs, resp, next) => {
     try {
         const playerName = req.query.player;
         console.log('Player name from query in /forest/explore:', playerName);  // Log player name
@@ -89,7 +89,7 @@ router.get('/forest/explore', (req, res, next) => {
 });
 
 // Find an item and add it to the player's inventory
-router.get('/forest/find-item', (req, res, next) => {
+router.get('/forest/find-item', (reqs, resp, next) => {
     try {
         const playerName = req.query.player;
         console.log('Player name from query in /forest/find-item:', playerName);  // Log the player name
@@ -116,5 +116,34 @@ router.get('/forest/find-item', (req, res, next) => {
         next(err);
     }
 });
+
+// Find a weapon and equip it to the player
+router.get('/forest/find-weapon', (reqs, resp, next) => {
+    try {
+        const playerName = req.query.player;
+        console.log('Player name from query in /forest/find-weapon:', playerName);  // Log the player name
+
+        const player = players.find(p => p.name === playerName);
+        if (!player) {
+            throw new Error('Player not found in /forest/find-weapon');
+        }
+
+        // Randomly assign a weapon from the weapons data
+        const foundWeapon = weapons[Math.floor(Math.random() * weapons.length)];
+        player.weapon = foundWeapon;  // Assign the weapon to the player
+
+        console.log(`Weapon assigned to player ${player.name}:`, player.weapon);
+
+        res.render('weapon', {
+            title: 'You Found a Weapon!',
+            message: `You found a ${foundWeapon.name} (${foundWeapon.description}). It has a power level of ${foundWeapon.power}.`,
+            player: playerName  // Pass the player's name to the view
+        });
+    } catch (err) {
+        console.error('Error in /forest/find-weapon:', err.message);
+        next(err);
+    }
+});
+
 
 export default router;

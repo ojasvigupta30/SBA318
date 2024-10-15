@@ -39,9 +39,9 @@ app.use('/', adventureRoutes);
 app.use('/dragon', challengeRoutes);
 
 // Error-handling middleware
-app.use((err, req, res, next) => {
+app.use((err, reqs, resp, next) => {
     console.error(err.stack);
-    res.status(500).send('Something went wrong! Please try again.');
+    resp.status(500).send('Something went wrong! Please try again.');
 });
 
 // Server Listener

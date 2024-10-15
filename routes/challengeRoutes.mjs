@@ -5,12 +5,12 @@ import { players } from '../data/players.mjs';  // Import shared players array
 const router = express.Router();
 
 // Dragon challenge route
-router.get('/', (req, res) => {
-    const playerName = req.query.player;  // Get player name from the query parameter
+router.get('/', (reqs, resp) => {
+    const playerName = reqs.query.player;  // Get player name from the query parameter
     const player = players.find(p => p.name === playerName);
 
     if (!player) {
-        return res.status(400).send('Player not found.');
+        return resp.status(400).send('Player not found.');
     }
 
     const room = rooms[2];  // Dragon's Lair
@@ -22,12 +22,12 @@ router.get('/', (req, res) => {
 });
 
 // Defeat dragon route (using weapon power)
-router.get('/defeat', (req, res) => {
-    const playerName = req.query.player;
+router.get('/defeat', (reqs, resp) => {
+    const playerName = reqs.query.player;
     const playerIndex = players.findIndex(p => p.name === playerName);
 
     if (playerIndex === -1) {
-        return res.status(400).send('Player not found.');
+        return resp.status(400).send('Player not found.');
     }
 
     const player = players[playerIndex];  // Get the updated player
@@ -37,13 +37,13 @@ router.get('/defeat', (req, res) => {
 
     // Check if the player has a weapon and if it is strong enough
     if (player.weapon && player.weapon.power >= 20) {
-        res.render('victory', { 
+        resp.render('victory', { 
             title: 'Victory!', 
             message: `With your ${player.weapon.name}, you bravely defeated the dragon and saved the kingdom!`,
             inventory: player.inventory.map(item => `<li>${item.name}: ${item.description}</li>`).join('') 
         });
     } else {
-        res.render('defeat', { 
+        resp.render('defeat', { 
             title: 'Defeat...', 
             message: 'Your weapon was not strong enough to defeat the dragon. Perhaps next time you will find a stronger weapon.',
             inventory: player.inventory.map(item => `<li>${item.name}: ${item.description}</li>`).join('')
