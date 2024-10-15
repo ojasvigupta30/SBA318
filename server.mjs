@@ -9,21 +9,21 @@ import fs from 'fs';
 const app = express();
 const PORT = 3000;
 
-
-//Middleware
-app.use(express.static(`public`));
-
 //Body Parser Middleware
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json({ extended: true }));
+
+//Middleware for static files
+app.use(express.static(`public`));
+
+
 
 
 
 
 //Routes
-app.use(`/`, gameRoute);
-
-
+app.use('/', adventureRoutes);
+app.use('/dragon', challengeRoutes);
 
 
 //Server Listner
