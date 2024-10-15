@@ -14,7 +14,7 @@
     #inventoryItems#
   </ul>
   
-  <!-- Links to go back or explore more -->
+  <!-- Links to go back to the forest or explore more -->
   <a href="/forest?player=#player#">Return to the forest</a><br>
   <a href="/forest/explore?player=#player#">Explore deeper</a>
 </body>

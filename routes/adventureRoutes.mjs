@@ -41,6 +41,10 @@ router.get('/forest', (req, res, next) => {
         const playerName = req.query.player;
         console.log('Player name from query in /forest:', playerName);  // Log player name
 
+        if (!playerName) {
+            throw new Error('No player name found in the query parameter');
+        }
+
         const player = players.find(p => p.name === playerName);
         if (!player) {
             throw new Error('Player not found');
@@ -63,10 +67,6 @@ router.get('/forest/explore', (req, res, next) => {
     try {
         const playerName = req.query.player;
         console.log('Player name from query in /forest/explore:', playerName);  // Log player name
-
-        if (!playerName) {
-            throw new Error('No player name found in the query parameter');
-        }
 
         const player = players.find(p => p.name === playerName);
         if (!player) {
@@ -108,46 +108,11 @@ router.get('/forest/find-item', (req, res, next) => {
         res.render('inventory', {
             title: 'Inventory Updated',
             message: `You found a ${foundItem.name}. It is now in your inventory.`,
-            inventoryItems: player.inventory.map(item => `<li>${item.name}: ${item.description}</li>`).join('')
+            inventoryItems: player.inventory.map(item => `<li>${item.name}: ${item.description}</li>`).join(''),
+            player: playerName  // Pass the player's name to the view
         });
     } catch (err) {
         console.error('Error in /forest/find-item:', err.message);
-        next(err);
-    }
-});
-
-
-// Find a weapon and equip it to the player
-router.get('/forest/find-weapon', (req, res, next) => {
-    try {
-        const playerName = req.query.player;
-        const playerIndex = players.findIndex(p => p.name === playerName);
-
-        if (playerIndex === -1) {
-            throw new Error('Player not found in /forest/find-weapon');
-        }
-
-        // Randomly assign a weapon to the player
-        const foundWeapon = weapons[Math.floor(Math.random() * weapons.length)];
-
-        // Check if we found a weapon
-        if (foundWeapon) {
-            players[playerIndex].weapon = foundWeapon;  // Directly update the player's weapon in the array
-            console.log(`Weapon assigned to player ${players[playerIndex].name}:`, players[playerIndex].weapon);
-        } else {
-            console.log('No weapon found.');
-        }
-
-        // Log the entire players array to see if the update persists
-        console.log('Updated players array:', players);
-
-        res.render('weapon', {
-            title: 'You Found a Weapon!',
-            message: `You found a ${foundWeapon.name} (${foundWeapon.description}). It has a power level of ${foundWeapon.power}.`,
-            weapon: foundWeapon
-        });
-    } catch (err) {
-        console.error('Error in /forest/find-weapon:', err.message);
         next(err);
     }
 });

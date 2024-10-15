@@ -6,7 +6,8 @@
   <title>#title#</title>
 </head>
 <body>
-  <h1>#message#</h1>
+  <h1>Welcome to the Adventure Game</h1>
+  <p>#message#</p>
   <form action="/start" method="POST">
     <label for="name">Enter your name:</label>
     <input type="text" id="name" name="name" required>
