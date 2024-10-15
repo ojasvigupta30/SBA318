@@ -1,5 +1,6 @@
 //imports
 import express from 'express';
+import bodyParser from 'body-parser';
 import gameRoute from './routes/gameRoute.mjs';
 
 //declaration and initalization
