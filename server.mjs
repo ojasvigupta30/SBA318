@@ -1,7 +1,9 @@
 //imports
 import express from 'express';
 import bodyParser from 'body-parser';
-import gameRoute from './routes/gameRoute.mjs';
+import adventureRoutes from './routes/adventureRoutes.mjs';
+import challengeRoutes from './routes/challengeRoutes.mjs';
+import fs from 'fs';
 
 //declaration and initalization
 const app = express();
