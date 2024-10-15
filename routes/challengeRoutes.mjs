@@ -1,41 +1,63 @@
 import express from 'express';
-import { challenges } from '../data/challenges.mjs';
+import { rooms } from '../data/rooms.mjs';
+import { players } from '../data/players.mjs';  // Import shared players array
 
 const router = express.Router();
 
-// In-memory player data
-let players = [];
-
-// Function to find player by name
-const findPlayer = (name) => players.find(p => p.name === name);
-
 // Dragon challenge route
-router.get('/', (reqs, resp) => {
-  const playerName = reqs.query.player;
-  const player = findPlayer(playerName);
-  const challenge = challenges[2]; // Fetch the challenge for the Cave of Wonders
-  resp.render('dragon', { title: challenge.description, message: `${challenge.description}, ${player.name}. What will you do?` });
+router.get('/', (req, res) => {
+    const playerName = req.query.player;  // Get player name from the query parameter
+    const player = players.find(p => p.name === playerName);
+
+    if (!player) {
+        return res.status(400).send('Player not found.');
+    }
+
+    const room = rooms[2];  // Dragon's Lair
+    res.render('dragon', { 
+        title: 'Facing the Dragon', 
+        message: room.description,
+        player: playerName  // Pass the player's name to the view for the links
+    });
 });
 
-// Fight the dragon
-router.post('/fight', (reqs, resp) => {
-  const playerName = req.body.player;
-  const player = findPlayer(playerName);
-  if (reqs.body.action === 'fight') {
-    player.progress = 'victory';
-    resp.render('victory', { title: 'Victory!', message: `${player.name}, you defeated the dragon!` });
-  } else {
-    player.progress = 'defeat';
-    resp.render('defeat', { title: 'Defeated', message: `${player.name}, the dragon overpowered you. Better luck next time.` });
-  }
+// Defeat dragon route (using weapon power)
+router.get('/defeat', (req, res) => {
+    const playerName = req.query.player;
+    const playerIndex = players.findIndex(p => p.name === playerName);
+
+    if (playerIndex === -1) {
+        return res.status(400).send('Player not found.');
+    }
+
+    const player = players[playerIndex];  // Get the updated player
+
+    // Log the player's data to check if the weapon exists
+    console.log(`Player's data in /dragon/defeat:`, player);
+
+    // Check if the player has a weapon and if it is strong enough
+    if (player.weapon && player.weapon.power >= 20) {
+        res.render('victory', { 
+            title: 'Victory!', 
+            message: `With your ${player.weapon.name}, you bravely defeated the dragon and saved the kingdom!`,
+            inventory: player.inventory.map(item => `<li>${item.name}: ${item.description}</li>`).join('') 
+        });
+    } else {
+        res.render('defeat', { 
+            title: 'Defeat...', 
+            message: 'Your weapon was not strong enough to defeat the dragon. Perhaps next time you will find a stronger weapon.',
+            inventory: player.inventory.map(item => `<li>${item.name}: ${item.description}</li>`).join('')
+        });
+    }
 });
 
-// Flee from the dragon
-router.get('/flee', (reqs, resp) => {
-  const playerName = reqs.query.player;
-  const player = findPlayer(playerName);
-  player.progress = 'flee';
-  resp.render('flee', { title: 'You Fled', message: `${player.name}, you ran away from the dragon, but it might find you again...` });
+// Lose to dragon route
+router.get('/lose', (req, res) => {
+    const playerName = req.query.player;
+    res.render('defeat', { 
+        title: 'Defeat...', 
+        message: 'The dragon overpowered you. Perhaps another time you will succeed.' 
+    });
 });
 
 export default router;

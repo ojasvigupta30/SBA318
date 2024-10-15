@@ -1,18 +1,5 @@
 export const inventory = [
-    {
-      id: 1,
-      name: "Silver Key",
-      description: "A small silver key that might unlock something important."
-    },
-    {
-      id: 2,
-      name: "Potion of Healing",
-      description: "A magical potion that restores health when consumed."
-    },
-    {
-      id: 3,
-      name: "Ancient Map",
-      description: "An old map leading to the Cave of Wonders."
-    }
-  ];
-  
+    { name: 'Silver Key', description: 'A small, shiny key that looks like it unlocks something important.' },
+    { name: 'Health Potion', description: 'A red potion that restores your health.' },
+    { name: 'Magic Sword', description: 'An ancient sword imbued with powerful magic.' }
+];

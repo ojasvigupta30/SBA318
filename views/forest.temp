@@ -4,11 +4,11 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>#title#</title>
-  <link rel="stylesheet" href="/styles/style.css">
 </head>
 <body>
-  <h1>#message#</h1>
-  <a href="/forest/explore?player=#player#">Venture Deeper</a><br>
-  <a href="/forest/find-item?player=#player#">Find an Item</a><br>
+  <h1>Welcome, #player#!</h1>
+  <p>#message#</p>
+  <a href="/forest/explore?player=#player#">Explore deeper into the forest</a>
+  <a href="/dragon?player=#player#">Face the mighty dragon</a>
 </body>
 </html>

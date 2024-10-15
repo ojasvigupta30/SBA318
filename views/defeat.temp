@@ -4,12 +4,14 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>#title#</title>
-  <link rel="stylesheet" href="/styles/style.css">
 </head>
 <body>
-  <h1>#message#</h1>
-  <p>Unfortunately, you have been defeated in this challenge. Better luck next time, adventurer.</p>
-  <p>But fear not, for every defeat is a lesson learned.</p>
+  <h1>#title#</h1>
+  <p>#message#</p>
+  <p>Items in your inventory:</p>
+  <ul>
+    #inventory#
+  </ul>
   <a href="/">Back to Home</a>
 </body>
 </html>

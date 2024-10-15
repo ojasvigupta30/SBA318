@@ -6,11 +6,8 @@
   <title>#title#</title>
 </head>
 <body>
-  <h1>#title#</h1>
+  <h1>Welcome, #player#!</h1>
   <p>#message#</p>
-  <ul>
-    #inventoryItems#
-  </ul>
-  <a href="/forest?player=#player#">Return to the Forest</a>
+  <a href="/">Back to Home</a>
 </body>
 </html>

@@ -1,51 +1,50 @@
-//imports
 import express from 'express';
 import bodyParser from 'body-parser';
 import adventureRoutes from './routes/adventureRoutes.mjs';
 import challengeRoutes from './routes/challengeRoutes.mjs';
 import fs from 'fs';
 
-//declaration and initalization
+// Initialize express
 const app = express();
 const PORT = 3000;
 
-//Body Parser Middleware
+// Body Parser Middleware
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use(bodyParser.json({ extended: true }));
+app.use(bodyParser.json());
 
-//Middleware for static files
-app.use(express.static(`public`));
+// Middleware for static files (CSS, images)
+app.use(express.static('public'));
 
-
-// Custom template engine
+// Custom template engine without using regex
 app.engine('temp', (filePath, options, callback) => {
-    fs.readFile(filePath, (err, content) => {
-      if (err) return callback(err);
-  
-      let rendered = content.toString()
-        .replace('#title#', options.title)
-        .replace('#message#', options.message);
-  
-      return callback(null, rendered);
+    fs.readFile(filePath, 'utf8', (err, content) => {
+        if (err) return callback(err);
+
+        let rendered = content.toString();
+        for (const key in options) {
+            const placeholder = `#${key}#`;
+            const value = typeof options[key] === 'object' ? JSON.stringify(options[key]) : options[key];
+            rendered = rendered.split(placeholder).join(value);
+        }
+
+        return callback(null, rendered);
     });
-  });
-  
-  app.set('views', './views'); // Set the views directory
-  app.set('view engine', 'temp'); // Register the custom template engine
+});
 
+app.set('views', './views'); // Set the views directory
+app.set('view engine', 'temp'); // Register the custom template engine
 
-//Routes
+// Routes
 app.use('/', adventureRoutes);
 app.use('/dragon', challengeRoutes);
 
-
 // Error-handling middleware
-app.use((err, reqs, resp, next) => {
+app.use((err, req, res, next) => {
     console.error(err.stack);
-    resp.status(500).send('Something went wrong! Please try again.');
-  });
+    res.status(500).send('Something went wrong! Please try again.');
+});
 
-//Server Listner
-app.listen(PORT, (reqs, resp)=>{
-    console.log(`The server is working on port: ${PORT}`);
+// Server Listener
+app.listen(PORT, () => {
+    console.log(`The server is running on port: ${PORT}`);
 });
