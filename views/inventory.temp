@@ -6,11 +6,16 @@
   <title>#title#</title>
 </head>
 <body>
-  <h1>#title#</h1>
+  <h1>Inventory Updated</h1>
   <p>#message#</p>
+
+  <!-- Display the player's current inventory -->
   <ul>
     #inventoryItems#
   </ul>
-  <a href="/forest?player=#player#">Return to the Forest</a>
+  
+  <!-- Links to go back or explore more -->
+  <a href="/forest?player=#player#">Return to the forest</a><br>
+  <a href="/forest/explore?player=#player#">Explore deeper</a>
 </body>
 </html>

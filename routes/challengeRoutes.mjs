@@ -51,13 +51,4 @@ router.get('/defeat', (req, res) => {
     }
 });
 
-// Lose to dragon route
-router.get('/lose', (req, res) => {
-    const playerName = req.query.player;
-    res.render('defeat', { 
-        title: 'Defeat...', 
-        message: 'The dragon overpowered you. Perhaps another time you will succeed.' 
-    });
-});
-
 export default router;

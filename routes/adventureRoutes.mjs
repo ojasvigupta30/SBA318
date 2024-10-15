@@ -39,8 +39,9 @@ router.post('/start', (req, res) => {
 router.get('/forest', (req, res, next) => {
     try {
         const playerName = req.query.player;
-        const player = players.find(p => p.name === playerName);
+        console.log('Player name from query in /forest:', playerName);  // Log player name
 
+        const player = players.find(p => p.name === playerName);
         if (!player) {
             throw new Error('Player not found');
         }
@@ -61,13 +62,14 @@ router.get('/forest', (req, res, next) => {
 router.get('/forest/explore', (req, res, next) => {
     try {
         const playerName = req.query.player;
-        const player = players.find(p => p.name === playerName);
+        console.log('Player name from query in /forest/explore:', playerName);  // Log player name
 
+        const player = players.find(p => p.name === playerName);
         if (!player) {
             throw new Error('Player not found in /forest/explore');
         }
 
-        player.progress = 'exploring';
+        player.progress = 'exploring';  // Update progress
         console.log(`Player progress updated:`, player);
 
         const room = rooms[1];  // Hidden Waterfall
@@ -78,33 +80,6 @@ router.get('/forest/explore', (req, res, next) => {
         });
     } catch (err) {
         console.error('Error in /forest/explore:', err.message);
-        next(err);
-    }
-});
-
-// Find an item and add it to the player's inventory
-router.get('/forest/find-item', (req, res, next) => {
-    try {
-        const playerName = req.query.player;
-        const player = players.find(p => p.name === playerName);
-
-        if (!player) {
-            throw new Error('Player not found in /forest/find-item');
-        }
-
-        // Randomly assign an item to the player
-        const foundItem = inventory[Math.floor(Math.random() * inventory.length)];
-        player.inventory.push(foundItem);  // Add the item to the inventory
-
-        console.log(`Item added to inventory:`, player.inventory);
-
-        res.render('inventory', {
-            title: 'Inventory Updated',
-            message: `You found a ${foundItem.name}. It is now in your inventory.`,
-            inventoryItems: player.inventory.map(item => `<li>${item.name}: ${item.description}</li>`).join('')
-        });
-    } catch (err) {
-        console.error('Error in /forest/find-item:', err.message);
         next(err);
     }
 });
@@ -124,13 +99,14 @@ router.get('/forest/find-weapon', (req, res, next) => {
 
         // Check if we found a weapon
         if (foundWeapon) {
-            players[playerIndex].weapon = foundWeapon;  // Directly update the weapon in the players array
-            console.log(`Weapon assigned to player ${players[playerIndex].name}:`, foundWeapon);
+            players[playerIndex].weapon = foundWeapon;  // Directly update the player's weapon in the array
+            console.log(`Weapon assigned to player ${players[playerIndex].name}:`, players[playerIndex].weapon);
         } else {
             console.log('No weapon found.');
         }
 
-        console.log(`Player data after weapon assignment:`, players[playerIndex]);
+        // Log the entire players array to see if the update persists
+        console.log('Updated players array:', players);
 
         res.render('weapon', {
             title: 'You Found a Weapon!',

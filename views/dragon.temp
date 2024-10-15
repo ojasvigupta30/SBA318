@@ -6,9 +6,11 @@
   <title>#title#</title>
 </head>
 <body>
-  <h1>#message#</h1>
-  <!-- Ensure player query parameter is properly passed -->
-  <a href="/dragon/defeat?player=#player#">Fight and win</a>
-  <a href="/dragon/lose?player=#player#">Run away and lose</a>
+  <h1>#title#</h1>
+  <p>#message#</p>
+
+  <!-- Options to fight or flee -->
+  <a href="/dragon/defeat?player=#player#">Fight the dragon!</a><br>
+  <a href="/dragon/lose?player=#player#">Flee from the dragon</a>
 </body>
 </html>

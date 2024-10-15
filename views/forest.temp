@@ -8,7 +8,17 @@
 <body>
   <h1>Welcome, #player#!</h1>
   <p>#message#</p>
-  <a href="/forest/explore?player=#player#">Explore deeper into the forest</a>
+  
+  <!-- Link to explore deeper into the forest -->
+  <a href="/forest/explore?player=#player#">Explore deeper into the forest</a><br>
+  
+  <!-- Link to find an item -->
+  <a href="/forest/find-item?player=#player#">Search for an item</a><br>
+  
+  <!-- Link to find a weapon -->
+  <a href="/forest/find-weapon?player=#player#">Search for a weapon</a><br>
+  
+  <!-- Link to face the dragon -->
   <a href="/dragon?player=#player#">Face the mighty dragon</a>
 </body>
 </html>

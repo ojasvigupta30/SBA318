@@ -6,8 +6,15 @@
   <title>#title#</title>
 </head>
 <body>
-  <h1>Welcome, #player#!</h1>
+  <h1>Exploration Continues</h1>
   <p>#message#</p>
-  <a href="/">Back to Home</a>
+
+  <!-- Links to continue exploring or go back -->
+  <a href="/forest/explore?player=#player#">Explore more</a><br>
+  <a href="/forest?player=#player#">Go back to the forest</a><br>
+  
+  <!-- Link to search for a weapon or item -->
+  <a href="/forest/find-item?player=#player#">Search for an item</a><br>
+  <a href="/forest/find-weapon?player=#player#">Search for a weapon</a>
 </body>
 </html>
