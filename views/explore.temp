@@ -4,17 +4,21 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>#title#</title>
+  <link rel="stylesheet" href="/styles/style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=IM+Fell+English+SC&display=swap" rel="stylesheet">
 </head>
 <body>
-  <h1>Exploration Continues</h1>
-  <p>#message#</p>
+  <div class="container">
+    <h1>Exploration Continues</h1>
+    <p>#message#</p>
 
-  <!-- Links to continue exploring or go back -->
-  <a href="/forest/explore?player=#player#">Explore more</a><br>
-  <a href="/forest?player=#player#">Go back to the forest</a><br>
-  
-  <!-- Link to search for a weapon or item -->
-  <a href="/forest/find-item?player=#player#">Search for an item</a><br>
-  <a href="/forest/find-weapon?player=#player#">Search for a weapon</a>
+    <!-- Links to continue exploring or go back -->
+    <a href="/forest/explore?player=#player#">Explore more</a><br>
+    <a href="/forest?player=#player#">Go back to the forest</a><br>
+    
+    <!-- Link to search for a weapon or item -->
+    <a href="/forest/find-item?player=#player#">Search for ancient relics</a><br>
+    <a href="/forest/find-weapon?player=#player#">Arm yourself for battle</a>
+  </div>
 </body>
 </html>

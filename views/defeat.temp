@@ -3,15 +3,20 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>#title#</title>
+  <title>Defeat</title>
+  <link rel="stylesheet" href="/styles/style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=IM+Fell+English+SC&display=swap" rel="stylesheet">
 </head>
 <body>
-  <h1>#title#</h1>
-  <p>#message#</p>
-  <p>Items in your inventory:</p>
-  <ul>
-    #inventory#
-  </ul>
-  <a href="/">Back to Home</a>
+  <div class="container">
+    <h1>You Have Been Defeated!</h1>
+    <p>The dragon's flames were too much. But do not despair; many adventurers have fallen before you.</p>
+
+    <!-- Options to return to the forest or try again -->
+    <div class="actions">
+      <a href="/forest?player=#player#" class="btn">Return to the forest</a><br>
+      <a href="/forest?player=#player#" class="btn">Try your luck again</a>
+    </div>
+  </div>
 </body>
 </html>

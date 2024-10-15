@@ -32,7 +32,7 @@ router.post('/start', (reqs, resp) => {
     console.log(`Player created or found:`, player);
 
     // Redirect to the forest with the player's name as a query parameter
-    res.redirect(`/forest?player=${player.name}`);
+    resp.redirect(`/forest?player=${player.name}`);
 });
 
 // Forest route
@@ -65,7 +65,7 @@ router.get('/forest', (reqs, resp, next) => {
 // Explore deeper into the forest
 router.get('/forest/explore', (reqs, resp, next) => {
     try {
-        const playerName = req.query.player;
+        const playerName = reqs.query.player;
         console.log('Player name from query in /forest/explore:', playerName);  // Log player name
 
         const player = players.find(p => p.name === playerName);
@@ -77,7 +77,7 @@ router.get('/forest/explore', (reqs, resp, next) => {
         console.log(`Player progress updated:`, player);
 
         const room = rooms[1];  // Hidden Waterfall
-        res.render('explore', {
+        resp.render('explore', {
             title: 'Hidden Waterfall',
             player: playerName,
             message: room.description
@@ -91,7 +91,7 @@ router.get('/forest/explore', (reqs, resp, next) => {
 // Find an item and add it to the player's inventory
 router.get('/forest/find-item', (reqs, resp, next) => {
     try {
-        const playerName = req.query.player;
+        const playerName = reqs.query.player;
         console.log('Player name from query in /forest/find-item:', playerName);  // Log the player name
 
         const player = players.find(p => p.name === playerName);
@@ -105,7 +105,7 @@ router.get('/forest/find-item', (reqs, resp, next) => {
 
         console.log(`Item added to inventory:`, player.inventory);
 
-        res.render('inventory', {
+        resp.render('inventory', {
             title: 'Inventory Updated',
             message: `You found a ${foundItem.name}. It is now in your inventory.`,
             inventoryItems: player.inventory.map(item => `<li>${item.name}: ${item.description}</li>`).join(''),
@@ -120,7 +120,7 @@ router.get('/forest/find-item', (reqs, resp, next) => {
 // Find a weapon and equip it to the player
 router.get('/forest/find-weapon', (reqs, resp, next) => {
     try {
-        const playerName = req.query.player;
+        const playerName = reqs.query.player;
         console.log('Player name from query in /forest/find-weapon:', playerName);  // Log the player name
 
         const player = players.find(p => p.name === playerName);
@@ -134,7 +134,7 @@ router.get('/forest/find-weapon', (reqs, resp, next) => {
 
         console.log(`Weapon assigned to player ${player.name}:`, player.weapon);
 
-        res.render('weapon', {
+        resp.render('weapon', {
             title: 'You Found a Weapon!',
             message: `You found a ${foundWeapon.name} (${foundWeapon.description}). It has a power level of ${foundWeapon.power}.`,
             player: playerName  // Pass the player's name to the view

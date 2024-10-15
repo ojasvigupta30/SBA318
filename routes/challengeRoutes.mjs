@@ -14,7 +14,7 @@ router.get('/', (reqs, resp) => {
     }
 
     const room = rooms[2];  // Dragon's Lair
-    res.render('dragon', { 
+    resp.render('dragon', { 
         title: 'Facing the Dragon', 
         message: room.description,
         player: playerName  // Pass the player's name to the view for the links
@@ -50,5 +50,6 @@ router.get('/defeat', (reqs, resp) => {
         });
     }
 });
+  
 
 export default router;

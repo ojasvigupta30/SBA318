@@ -4,13 +4,15 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>#title#</title>
+  <link rel="stylesheet" href="/styles/style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=IM+Fell+English+SC&display=swap" rel="stylesheet">
 </head>
 <body>
   <h1>#title#</h1>
   <p>#message#</p>
 
   <!-- Options to fight or flee -->
-  <a href="/dragon/defeat?player=#player#">Fight the dragon!</a><br>
-  <a href="/dragon/lose?player=#player#">Flee from the dragon</a>
+  <a href="/dragon/defeat?player=#player#">Confront the Fiery Beast!</a><br>
+  <a href="/dragon/lose?player=#player#">Make a Hasty Escape!</a>
 </body>
 </html>

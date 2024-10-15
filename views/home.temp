@@ -4,14 +4,18 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>#title#</title>
+  <link rel="stylesheet" href="/styles/style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=IM+Fell+English+SC&display=swap" rel="stylesheet">
 </head>
 <body>
-  <h1>Welcome to the Adventure Game</h1>
-  <p>#message#</p>
-  <form action="/start" method="POST">
-    <label for="name">Enter your name:</label>
-    <input type="text" id="name" name="name" required>
-    <button type="submit">Start Adventure</button>
-  </form>
+  <div class="container">
+    <h1>Welcome, Adventurer!</h1>
+    <p>The ancient forest awaits. Will you heed the call?</p>
+    <form action="/start" method="POST">
+      <label for="name">Enter your name, brave soul:</label><br><br>
+      <input type="text" id="name" name="name" required><br><br>
+      <button type="submit">Begin Your Quest</button>
+    </form>
+  </div>
 </body>
 </html>

@@ -4,21 +4,18 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>#title#</title>
+  <link rel="stylesheet" href="/styles/style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=IM+Fell+English+SC&display=swap" rel="stylesheet">
 </head>
 <body>
-  <h1>Welcome, #player#!</h1>
-  <p>#message#</p>
-  
-  <!-- Link to explore deeper into the forest -->
-  <a href="/forest/explore?player=#player#">Explore deeper into the forest</a><br>
-  
-  <!-- Link to find an item -->
-  <a href="/forest/find-item?player=#player#">Search for an item</a><br>
-  
-  <!-- Link to find a weapon -->
-  <a href="/forest/find-weapon?player=#player#">Search for a weapon</a><br>
-  
-  <!-- Link to face the dragon -->
-  <a href="/dragon?player=#player#">Face the mighty dragon</a>
+  <div class="container">
+    <h1>Welcome, #player#!</h1>
+    <p>#message#</p>
+    
+    <a href="/forest/explore?player=#player#">Venture deeper into the woods</a><br>
+    <a href="/forest/find-item?player=#player#">Search for ancient relics</a><br>
+    <a href="/forest/find-weapon?player=#player#">Arm yourself for battle</a><br>
+    <a href="/dragon?player=#player#">Confront the mighty dragon</a>
+  </div>
 </body>
 </html>

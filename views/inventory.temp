@@ -4,18 +4,21 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>#title#</title>
+  <link rel="stylesheet" href="/styles/style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=IM+Fell+English+SC&display=swap" rel="stylesheet">
 </head>
 <body>
-  <h1>Inventory Updated</h1>
-  <p>#message#</p>
+  <div class="container">
+    <h1>Inventory Updated</h1>
+    <p>#message#</p>
 
-  <!-- Display the player's current inventory -->
-  <ul>
-    #inventoryItems#
-  </ul>
-  
-  <!-- Links to go back to the forest or explore more -->
-  <a href="/forest?player=#player#">Return to the forest</a><br>
-  <a href="/forest/explore?player=#player#">Explore deeper</a>
+    <!-- Display the player's current inventory -->
+    <ul>
+      #inventoryItems#
+    </ul>
+    
+    <a href="/forest?player=#player#">Return to the forest</a><br>
+    <a href="/forest/explore?player=#player#">Explore deeper into the forest</a>
+  </div>
 </body>
 </html>

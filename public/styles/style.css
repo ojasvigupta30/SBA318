@@ -1,0 +1,117 @@
+/* General styles */
+body {
+    font-family: 'Cinzel', serif; /* Medieval styled font */
+    background-color: #2F2F2F; /* Dark charcoal background */
+    color: #D4AF37; /* Antique gold text */
+    text-align: center;
+    padding: 20px;
+    margin: 0;
+    height: 100vh;
+}
+
+h1 {
+    color: #8B0000; /* Dark red for headings */
+    font-size: 3em;
+    text-shadow: 2px 2px 5px #000;
+    margin-bottom: 20px;
+    font-family: 'IM Fell English SC', serif; /* Antique serif font for the heading */
+}
+
+p {
+    font-size: 1.5em;
+    color: #D4AF37; /* Antique gold for paragraph text */
+    text-shadow: 1px 1px 3px #000;
+    margin-bottom: 30px;
+}
+
+a, button {
+    color: #fff; /* White text for buttons and links */
+    text-decoration: none;
+    padding: 15px 30px;
+    background-color: #8B0000; /* Dark red for buttons/links */
+    border-radius: 8px;
+    font-size: 1.2em;
+    display: inline-block;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.3);
+    transition: all 0.3s ease;
+    margin: 10px;
+}
+
+a:hover, button:hover {
+    background-color: #D4AF37; /* Gold background on hover */
+    color: #8B0000; /* Dark red text on hover */
+    transform: scale(1.1);
+    box-shadow: 0px 6px 10px rgba(0, 0, 0, 0.4);
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+li {
+    font-size: 1.2em;
+    margin: 10px 0;
+    color: #D4AF37; /* Antique gold for list items */
+}
+
+button {
+    padding: 15px 30px;
+    background-color: #228B22; /* Forest green for buttons */
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-family: 'Cinzel', serif;
+}
+
+button:hover {
+    background-color: #D4AF37; /* Gold on hover */
+    color: #228B22; /* Green text on hover */
+    transform: scale(1.1);
+    box-shadow: 0px 6px 10px rgba(0, 0, 0, 0.4);
+}
+
+input[type="text"] {
+    padding: 12px;
+    border: 2px solid #8B0000; /* Dark red border */
+    border-radius: 5px;
+    font-size: 1.2em;
+    width: 50%;
+    margin-bottom: 20px;
+    color: #D4AF37; /* Gold text */
+    background-color: #2F2F2F; /* Dark background for input */
+}
+
+input[type="text"]:focus {
+    outline: none;
+    border-color: #D4AF37; /* Gold border on focus */
+}
+
+/* Adding a scroll-like parchment background for content areas */
+.container {
+    background-color: #F5DEB3; /* Parchment color */
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.5);
+    margin-bottom: 20px;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Animations for fade-in effect */
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+h1, p, a, button {
+    animation: fadeIn 1s ease-out;
+}
